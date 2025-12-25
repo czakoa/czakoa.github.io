@@ -4,31 +4,178 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Alex Czako</title>
-    <meta name="description" content="Alex Czako — personal website." />
-    <style>
-      :root { font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; }
-      body { margin: 0; }
-      main { max-width: 760px; margin: 72px auto; padding: 0 20px; }
-      h1 { margin: 0 0 12px; font-size: 42px; letter-spacing: -0.02em; }
-      p { margin: 0 0 18px; line-height: 1.6; font-size: 18px; color: #222; }
-      a { color: inherit; }
-      ul { padding-left: 18px; }
-      li { margin: 8px 0; }
-      .muted { color: #555; font-size: 15px; }
-    </style>
+    <meta name="description" content="Alex Czako — builder, operator, and investor-adjacent." />
+    <meta name="theme-color" content="#0b0f19" />
+
+    <!-- Social preview (optional, but looks professional) -->
+    <meta property="og:title" content="Alex Czako" />
+    <meta property="og:description" content="Builder + operator. Writing, work, and projects." />
+    <meta property="og:type" content="website" />
+
+    <link rel="stylesheet" href="assets/styles.css" />
   </head>
+
   <body>
-    <main>
-      <h1>Alex Czako</h1>
-      <p>Head of BizOps at Wefunder. I build systems, ship projects, and help founders raise.</p>
+    <a class="skip" href="#content">Skip to content</a>
 
-      <ul>
-        <li><a href="https://www.linkedin.com/" target="_blank" rel="noreferrer">LinkedIn</a></li>
-        <li><a href="https://github.com/czakoa" target="_blank" rel="noreferrer">GitHub</a></li>
-        <li><a href="mailto:alex@alexczako.com">alex@alexczako.com</a></li>
-      </ul>
+    <header class="header">
+      <div class="container header__inner">
+        <a class="brand" href="/">
+          <span class="brand__dot" aria-hidden="true"></span>
+          <span class="brand__name">Alex Czako</span>
+        </a>
 
-      <p class="muted">Last updated: 2025-12-25</p>
+        <nav class="nav" aria-label="Primary">
+          <a href="#about">About</a>
+          <a href="#work">Work</a>
+          <a href="#writing">Writing</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="content">
+      <section class="hero">
+        <div class="container">
+          <p class="eyebrow">Personal site</p>
+          <h1 class="hero__title">
+            I build systems, ship projects, and help founders raise.
+          </h1>
+          <p class="hero__sub">
+            Head of BizOps at Wefunder. Interested in fintech, climate resilience, and tools that make operators faster.
+          </p>
+
+          <div class="hero__cta">
+            <a class="button" href="#contact">Get in touch</a>
+            <a class="button button--ghost" href="https://github.com/czakoa" target="_blank" rel="noreferrer">
+              GitHub
+            </a>
+          </div>
+
+          <div class="chips" aria-label="Highlights">
+            <span class="chip">NYC → SF</span>
+            <span class="chip">BizOps</span>
+            <span class="chip">SQL + automation</span>
+            <span class="chip">Early-stage</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="about" class="section">
+        <div class="container">
+          <div class="section__head">
+            <h2>About</h2>
+            <p>Short, direct, and skimmable. Add 3–5 sentences here.</p>
+          </div>
+
+          <div class="grid">
+            <article class="card">
+              <h3>What I’m doing</h3>
+              <p>
+                One sentence on your current focus. Another on what you’re optimizing for.
+              </p>
+            </article>
+
+            <article class="card">
+              <h3>What I’m good at</h3>
+              <ul class="list">
+                <li>Systems + process design</li>
+                <li>Data + metrics (SQL, dashboards)</li>
+                <li>Cross-functional execution</li>
+              </ul>
+            </article>
+
+            <article class="card">
+              <h3>What I care about</h3>
+              <p>
+                2–3 themes you’re consistently drawn to. Keep it specific.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="work" class="section">
+        <div class="container">
+          <div class="section__head">
+            <h2>Work</h2>
+            <p>A small set of proof points beats a long resume.</p>
+          </div>
+
+          <div class="stack">
+            <article class="item">
+              <div class="item__meta">
+                <span class="pill">Wefunder</span>
+                <span class="muted">2023–Now</span>
+              </div>
+              <h3>Head of BizOps</h3>
+              <p>
+                Add 2–3 measurable bullets here. Focus on outcomes, not responsibilities.
+              </p>
+            </article>
+
+            <article class="item">
+              <div class="item__meta">
+                <span class="pill">Credit Suisse</span>
+                <span class="muted">2022–2023</span>
+              </div>
+              <h3>Investment Banking Analyst</h3>
+              <p>
+                One line about what you did and the scale. Keep it tight.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="writing" class="section">
+        <div class="container">
+          <div class="section__head">
+            <h2>Writing</h2>
+            <p>Even 3 posts makes this feel real.</p>
+          </div>
+
+          <div class="grid grid--2">
+            <a class="card linkcard" href="#" aria-label="Writing sample 1">
+              <h3>Title of post</h3>
+              <p class="muted">A one-line description of what someone will learn.</p>
+              <span class="linkcard__arrow" aria-hidden="true">→</span>
+            </a>
+
+            <a class="card linkcard" href="#" aria-label="Writing sample 2">
+              <h3>Title of post</h3>
+              <p class="muted">A one-line description of what someone will learn.</p>
+              <span class="linkcard__arrow" aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="section">
+        <div class="container">
+          <div class="section__head">
+            <h2>Contact</h2>
+            <p>If someone wants to reach you, make it frictionless.</p>
+          </div>
+
+          <div class="contact">
+            <a class="button" href="mailto:alex@alexczako.com">alex@alexczako.com</a>
+            <div class="contact__links">
+              <a href="https://www.linkedin.com/" target="_blank" rel="noreferrer">LinkedIn</a>
+              <a href="https://github.com/czakoa" target="_blank" rel="noreferrer">GitHub</a>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
+
+    <footer class="footer">
+      <div class="container footer__inner">
+        <span class="muted">© <span id="year"></span> Alex Czako</span>
+        <span class="muted">Built on GitHub Pages</span>
+      </div>
+    </footer>
+
+    <script src="assets/main.js"></script>
   </body>
 </html>
