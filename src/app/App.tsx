@@ -431,26 +431,27 @@ export default function App() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div className="border border-foreground/10 p-6">
                 <iframe
+                  data-testid="embed-iframe"
                   style={{ borderRadius: '12px' }}
-                  src="https://open.spotify.com/embed/show/YOUR_SHOW_ID?utm_source=generator"
+                  src="https://open.spotify.com/embed/show/11EGQMqZnBXZtLmJkyReXa?utm_source=generator"
                   width="100%"
                   height="352"
                   frameBorder="0"
                   allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
                   loading="lazy"
-                  title="Warm Intro Podcast - Episode 1"
+                  title="Warm Intro Podcast - Spotify"
                 />
               </div>
               <div className="border border-foreground/10 p-6">
                 <iframe
-                  style={{ borderRadius: '12px' }}
-                  src="https://open.spotify.com/embed/show/YOUR_SHOW_ID?utm_source=generator"
                   width="100%"
                   height="352"
+                  src="https://www.youtube.com/embed/4p6QMbA2GA8?si=Q6UEiGayDjUgzOxI"
+                  title="Warm Intro Podcast - YouTube"
                   frameBorder="0"
-                  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                  loading="lazy"
-                  title="Warm Intro Podcast - Episode 2"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  allowFullScreen
                 />
               </div>
             </div>
