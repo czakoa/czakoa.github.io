@@ -1,6 +1,5 @@
 import { motion, useScroll, useTransform } from "motion/react";
 import { useRef } from "react";
-import { AbstractArches } from "./components/AbstractArches";
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "./components/ui/accordion";
 
 export default function App() {
@@ -8,12 +7,25 @@ export default function App() {
   const { scrollYProgress } = useScroll();
 
   const headerOpacity = useTransform(scrollYProgress, [0, 0.1], [1, 0]);
-  const gridScale = useTransform(scrollYProgress, [0, 0.15], [1, 0.995]);
+  const heroY = useTransform(scrollYProgress, [0, 0.3], [0, -50]);
+  const heroOpacity = useTransform(scrollYProgress, [0, 0.2], [1, 0.8]);
 
   return (
-    <div ref={containerRef} className="min-h-screen bg-background">
-      {/* Abstract arches with lighting */}
-      <AbstractArches />
+    <div ref={containerRef} className="min-h-screen bg-background relative overflow-hidden">
+      {/* Animated gradient background */}
+      <div className="fixed inset-0 pointer-events-none">
+        <motion.div
+          animate={{
+            background: [
+              'radial-gradient(circle at 20% 50%, rgba(255, 87, 34, 0.03) 0%, transparent 50%)',
+              'radial-gradient(circle at 80% 50%, rgba(255, 87, 34, 0.03) 0%, transparent 50%)',
+              'radial-gradient(circle at 20% 50%, rgba(255, 87, 34, 0.03) 0%, transparent 50%)',
+            ],
+          }}
+          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute inset-0"
+        />
+      </div>
 
       {/* Subtle texture overlay */}
       <div className="fixed inset-0 opacity-[0.015] pointer-events-none bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZmlsdGVyIGlkPSJub2lzZSI+PGZlVHVyYnVsZW5jZSB0eXBlPSJmcmFjdGFsTm9pc2UiIGJhc2VGcmVxdWVuY3k9IjAuOSIgbnVtT2N0YXZlcz0iNCIvPjwvZmlsdGVyPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbHRlcj0idXJsKCNub2lzZSkiLz48L3N2Zz4=')]" />
@@ -31,10 +43,7 @@ export default function App() {
       </motion.header>
 
       {/* Main Content */}
-      <motion.div
-        style={{ scale: gridScale }}
-        className="relative"
-      >
+      <div className="relative">
         {/* Hero Grid Layout */}
         <div className="min-h-screen grid grid-cols-12 gap-px bg-border">
           {/* Left decorative column */}
@@ -42,7 +51,10 @@ export default function App() {
 
           {/* Main content area */}
           <div className="col-span-10 bg-background">
-            <div className="min-h-screen flex flex-col justify-center px-12 py-24">
+            <motion.div
+              style={{ y: heroY, opacity: heroOpacity }}
+              className="min-h-screen flex flex-col justify-center px-12 py-24"
+            >
               {/* Masthead */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -50,26 +62,18 @@ export default function App() {
                 transition={{ duration: 0.8, delay: 0.2 }}
                 className="mb-12"
               >
-                <div className="border-t border-b border-foreground/10 py-8 relative">
+                <motion.div
+                  className="border-t border-b border-foreground/10 py-8 relative"
+                  whileHover={{ borderColor: 'rgba(255,255,255,0.15)' }}
+                  transition={{ duration: 0.3 }}
+                >
                   <h1
                     className="tracking-tight leading-[0.9]"
                     style={{ fontSize: 'clamp(2rem, 6vw, 4rem)' }}
                   >
                     Alex Czako
                   </h1>
-                  {/* Extended top border */}
-                  <div className="absolute left-0 right-0 top-0 h-px pointer-events-none -mx-12 md:-mx-24 lg:-mx-40"
-                    style={{
-                      background: 'linear-gradient(to right, transparent 0%, rgba(255,255,255,0.1) 15%, rgba(255,255,255,0.1) 85%, transparent 100%)'
-                    }}
-                  />
-                  {/* Extended bottom border */}
-                  <div className="absolute left-0 right-0 bottom-0 h-px pointer-events-none -mx-12 md:-mx-24 lg:-mx-40"
-                    style={{
-                      background: 'linear-gradient(to right, transparent 0%, rgba(255,255,255,0.1) 15%, rgba(255,255,255,0.1) 85%, transparent 100%)'
-                    }}
-                  />
-                </div>
+                </motion.div>
               </motion.div>
 
               {/* Links directly below name */}
@@ -165,14 +169,14 @@ export default function App() {
                   Scroll
                 </div>
                 <motion.div
-                  animate={{ x: [0, 3, 0] }}
+                  animate={{ y: [0, 4, 0] }}
                   transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
                   className="text-foreground/30"
                 >
                   ↓
                 </motion.div>
               </motion.div>
-            </div>
+            </motion.div>
           </div>
 
           {/* Right decorative column */}
@@ -192,36 +196,36 @@ export default function App() {
             className="col-span-10 bg-background py-24 px-12"
           >
             {/* Section label */}
-            <div className="flex items-center gap-8 mb-12 relative">
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+              className="flex items-center gap-8 mb-12"
+            >
               <div className="text-[0.65rem] tracking-[0.3em] uppercase text-foreground/40">
                 Experience
               </div>
-              <div className="h-px flex-1 bg-foreground/10" />
-              {/* Extended line with fade */}
-              <div className="absolute left-0 right-0 top-1/2 -translate-y-1/2 h-px pointer-events-none -mx-12 md:-mx-24 lg:-mx-32"
-                style={{
-                  background: 'linear-gradient(to right, transparent 0%, rgba(255,255,255,0.1) 20%, rgba(255,255,255,0.1) 80%, transparent 100%)'
-                }}
+              <motion.div
+                initial={{ scaleX: 0 }}
+                whileInView={{ scaleX: 1 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                viewport={{ once: true }}
+                className="h-px flex-1 bg-foreground/10 origin-left"
               />
-            </div>
+            </motion.div>
 
             {/* Experience items */}
             <Accordion type="multiple" className="space-y-6">
               {/* Wefunder - with nested accordion for multiple positions */}
-              <AccordionItem value="wefunder" className="border border-foreground/10 hover:border-foreground/20 transition-colors relative overflow-visible">
-                {/* Extended top border */}
-                <div className="absolute left-0 right-0 top-0 h-px pointer-events-none -mx-6 md:-mx-12 lg:-mx-16"
-                  style={{
-                    background: 'linear-gradient(to right, transparent 0%, rgba(255,255,255,0.08) 15%, rgba(255,255,255,0.08) 85%, transparent 100%)'
-                  }}
-                />
-                {/* Extended bottom border */}
-                <div className="absolute left-0 right-0 bottom-0 h-px pointer-events-none -mx-6 md:-mx-12 lg:-mx-16"
-                  style={{
-                    background: 'linear-gradient(to right, transparent 0%, rgba(255,255,255,0.08) 15%, rgba(255,255,255,0.08) 85%, transparent 100%)'
-                  }}
-                />
-                <AccordionTrigger className="px-6 hover:no-underline hover:bg-foreground/5 transition-colors">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                viewport={{ once: true }}
+              >
+                <AccordionItem value="wefunder" className="border border-foreground/10 hover:border-foreground/20 hover:shadow-lg hover:shadow-[#ff5722]/5 transition-all duration-300">
+                  <AccordionTrigger className="px-6 hover:no-underline hover:bg-foreground/5 transition-colors">
                   <div className="flex items-center gap-4 w-full">
                     <span className="px-3 py-1 text-[0.7rem] tracking-wide border border-foreground/20 text-foreground/60">Wefunder (YC13)</span>
                     <span className="text-[0.75rem] text-foreground/40">Aug. 2023 - Present</span>
@@ -281,22 +285,17 @@ export default function App() {
                   </Accordion>
                 </AccordionContent>
               </AccordionItem>
+              </motion.div>
 
               {/* Credit Suisse */}
-              <AccordionItem value="credit-suisse" className="border border-foreground/10 hover:border-foreground/20 transition-colors relative overflow-visible">
-                {/* Extended top border */}
-                <div className="absolute left-0 right-0 top-0 h-px pointer-events-none -mx-6 md:-mx-12 lg:-mx-16"
-                  style={{
-                    background: 'linear-gradient(to right, transparent 0%, rgba(255,255,255,0.08) 15%, rgba(255,255,255,0.08) 85%, transparent 100%)'
-                  }}
-                />
-                {/* Extended bottom border */}
-                <div className="absolute left-0 right-0 bottom-0 h-px pointer-events-none -mx-6 md:-mx-12 lg:-mx-16"
-                  style={{
-                    background: 'linear-gradient(to right, transparent 0%, rgba(255,255,255,0.08) 15%, rgba(255,255,255,0.08) 85%, transparent 100%)'
-                  }}
-                />
-                <AccordionTrigger className="px-6 hover:no-underline hover:bg-foreground/5 transition-colors">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+                viewport={{ once: true }}
+              >
+                <AccordionItem value="credit-suisse" className="border border-foreground/10 hover:border-foreground/20 hover:shadow-lg hover:shadow-[#ff5722]/5 transition-all duration-300">
+                  <AccordionTrigger className="px-6 hover:no-underline hover:bg-foreground/5 transition-colors">
                   <div className="flex items-center gap-4">
                     <span className="px-3 py-1 text-[0.7rem] tracking-wide border border-foreground/20 text-foreground/60">Credit Suisse</span>
                     <span className="text-[0.75rem] text-foreground/40">Jul. 2022 - Jul. 2023</span>
@@ -310,22 +309,17 @@ export default function App() {
                   </ul>
                 </AccordionContent>
               </AccordionItem>
+              </motion.div>
 
               {/* UBS */}
-              <AccordionItem value="ubs" className="border border-foreground/10 hover:border-foreground/20 transition-colors relative overflow-visible">
-                {/* Extended top border */}
-                <div className="absolute left-0 right-0 top-0 h-px pointer-events-none -mx-6 md:-mx-12 lg:-mx-16"
-                  style={{
-                    background: 'linear-gradient(to right, transparent 0%, rgba(255,255,255,0.08) 15%, rgba(255,255,255,0.08) 85%, transparent 100%)'
-                  }}
-                />
-                {/* Extended bottom border */}
-                <div className="absolute left-0 right-0 bottom-0 h-px pointer-events-none -mx-6 md:-mx-12 lg:-mx-16"
-                  style={{
-                    background: 'linear-gradient(to right, transparent 0%, rgba(255,255,255,0.08) 15%, rgba(255,255,255,0.08) 85%, transparent 100%)'
-                  }}
-                />
-                <AccordionTrigger className="px-6 hover:no-underline hover:bg-foreground/5 transition-colors">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+                viewport={{ once: true }}
+              >
+                <AccordionItem value="ubs" className="border border-foreground/10 hover:border-foreground/20 hover:shadow-lg hover:shadow-[#ff5722]/5 transition-all duration-300">
+                  <AccordionTrigger className="px-6 hover:no-underline hover:bg-foreground/5 transition-colors">
                   <div className="flex items-center gap-4">
                     <span className="px-3 py-1 text-[0.7rem] tracking-wide border border-foreground/20 text-foreground/60">UBS</span>
                     <span className="text-[0.75rem] text-foreground/40">Jun. 2021 - Jan. 2022</span>
@@ -339,22 +333,17 @@ export default function App() {
                   </ul>
                 </AccordionContent>
               </AccordionItem>
+              </motion.div>
 
               {/* Scotiabank */}
-              <AccordionItem value="scotiabank" className="border border-foreground/10 hover:border-foreground/20 transition-colors relative overflow-visible">
-                {/* Extended top border */}
-                <div className="absolute left-0 right-0 top-0 h-px pointer-events-none -mx-6 md:-mx-12 lg:-mx-16"
-                  style={{
-                    background: 'linear-gradient(to right, transparent 0%, rgba(255,255,255,0.08) 15%, rgba(255,255,255,0.08) 85%, transparent 100%)'
-                  }}
-                />
-                {/* Extended bottom border */}
-                <div className="absolute left-0 right-0 bottom-0 h-px pointer-events-none -mx-6 md:-mx-12 lg:-mx-16"
-                  style={{
-                    background: 'linear-gradient(to right, transparent 0%, rgba(255,255,255,0.08) 15%, rgba(255,255,255,0.08) 85%, transparent 100%)'
-                  }}
-                />
-                <AccordionTrigger className="px-6 hover:no-underline hover:bg-foreground/5 transition-colors">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+                viewport={{ once: true }}
+              >
+                <AccordionItem value="scotiabank" className="border border-foreground/10 hover:border-foreground/20 hover:shadow-lg hover:shadow-[#ff5722]/5 transition-all duration-300">
+                  <AccordionTrigger className="px-6 hover:no-underline hover:bg-foreground/5 transition-colors">
                   <div className="flex items-center gap-4">
                     <span className="px-3 py-1 text-[0.7rem] tracking-wide border border-foreground/20 text-foreground/60">Scotiabank</span>
                     <span className="text-[0.75rem] text-foreground/40">Mar. 2021 - Jun. 2021</span>
@@ -367,22 +356,17 @@ export default function App() {
                   </ul>
                 </AccordionContent>
               </AccordionItem>
+              </motion.div>
 
               {/* GRI / MIT Lincoln Labs */}
-              <AccordionItem value="gri" className="border border-foreground/10 hover:border-foreground/20 transition-colors relative overflow-visible">
-                {/* Extended top border */}
-                <div className="absolute left-0 right-0 top-0 h-px pointer-events-none -mx-6 md:-mx-12 lg:-mx-16"
-                  style={{
-                    background: 'linear-gradient(to right, transparent 0%, rgba(255,255,255,0.08) 15%, rgba(255,255,255,0.08) 85%, transparent 100%)'
-                  }}
-                />
-                {/* Extended bottom border */}
-                <div className="absolute left-0 right-0 bottom-0 h-px pointer-events-none -mx-6 md:-mx-12 lg:-mx-16"
-                  style={{
-                    background: 'linear-gradient(to right, transparent 0%, rgba(255,255,255,0.08) 15%, rgba(255,255,255,0.08) 85%, transparent 100%)'
-                  }}
-                />
-                <AccordionTrigger className="px-6 hover:no-underline hover:bg-foreground/5 transition-colors">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+                viewport={{ once: true }}
+              >
+                <AccordionItem value="gri" className="border border-foreground/10 hover:border-foreground/20 hover:shadow-lg hover:shadow-[#ff5722]/5 transition-all duration-300">
+                  <AccordionTrigger className="px-6 hover:no-underline hover:bg-foreground/5 transition-colors">
                   <div className="flex items-center gap-4">
                     <span className="px-3 py-1 text-[0.7rem] tracking-wide border border-foreground/20 text-foreground/60">GRI / MIT Lincoln Labs</span>
                     <span className="text-[0.75rem] text-foreground/40">May 2020 - Sep. 2020</span>
@@ -395,28 +379,23 @@ export default function App() {
                   </ul>
                 </AccordionContent>
               </AccordionItem>
+              </motion.div>
 
             </Accordion>
 
             {/* Education - Non-collapsible */}
-            <div className="border border-foreground/10 p-6 mt-6 relative overflow-visible">
-              {/* Extended top border */}
-              <div className="absolute left-0 right-0 top-0 h-px pointer-events-none -mx-6 md:-mx-12 lg:-mx-16"
-                style={{
-                  background: 'linear-gradient(to right, transparent 0%, rgba(255,255,255,0.08) 15%, rgba(255,255,255,0.08) 85%, transparent 100%)'
-                }}
-              />
-              {/* Extended bottom border */}
-              <div className="absolute left-0 right-0 bottom-0 h-px pointer-events-none -mx-6 md:-mx-12 lg:-mx-16"
-                style={{
-                  background: 'linear-gradient(to right, transparent 0%, rgba(255,255,255,0.08) 15%, rgba(255,255,255,0.08) 85%, transparent 100%)'
-                }}
-              />
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              viewport={{ once: true }}
+              className="border border-foreground/10 p-6 mt-6 hover:border-foreground/20 hover:shadow-lg hover:shadow-[#ff5722]/5 transition-all duration-300"
+            >
               <div className="flex items-center gap-4">
                 <span className="px-3 py-1 text-[0.7rem] tracking-wide border border-foreground/20 text-foreground/60">Northeastern University</span>
                 <span className="text-[0.75rem] text-foreground/40">Sep. 2018 - Apr. 2022</span>
               </div>
-            </div>
+            </motion.div>
           </motion.div>
 
           <div className="col-span-1 bg-background" />
@@ -434,39 +413,53 @@ export default function App() {
             className="col-span-10 bg-background py-24 px-12"
           >
             {/* Section label */}
-            <div className="flex items-center gap-8 mb-12 relative">
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+              className="flex items-center gap-8 mb-12"
+            >
               <div className="text-[0.65rem] tracking-[0.3em] uppercase text-foreground/40">
                 Podcast
               </div>
-              <div className="h-px flex-1 bg-foreground/10" />
-              {/* Extended line with fade */}
-              <div className="absolute left-0 right-0 top-1/2 -translate-y-1/2 h-px pointer-events-none -mx-12 md:-mx-24 lg:-mx-32"
-                style={{
-                  background: 'linear-gradient(to right, transparent 0%, rgba(255,255,255,0.1) 20%, rgba(255,255,255,0.1) 80%, transparent 100%)'
-                }}
+              <motion.div
+                initial={{ scaleX: 0 }}
+                whileInView={{ scaleX: 1 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                viewport={{ once: true }}
+                className="h-px flex-1 bg-foreground/10 origin-left"
               />
-            </div>
+            </motion.div>
 
-            <h2 className="text-[1.8rem] font-medium text-foreground mb-8">Warm Intro</h2>
-            <p className="text-[1.1rem] leading-relaxed text-foreground/70 mb-12 max-w-3xl">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: true }}
+              className="text-[1.8rem] font-medium text-foreground mb-8"
+            >
+              Warm Intro
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              viewport={{ once: true }}
+              className="text-[1.1rem] leading-relaxed text-foreground/70 mb-12 max-w-3xl"
+            >
               A podcast I produce.
-            </p>
+            </motion.p>
 
             {/* Embedded podcast episodes */}
             <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
-              <div className="border border-foreground/10 p-6 md:col-span-2 relative overflow-visible">
-                {/* Extended top border */}
-                <div className="absolute left-0 right-0 top-0 h-px pointer-events-none -mx-6 md:-mx-8 lg:-mx-12"
-                  style={{
-                    background: 'linear-gradient(to right, transparent 0%, rgba(255,255,255,0.08) 15%, rgba(255,255,255,0.08) 85%, transparent 100%)'
-                  }}
-                />
-                {/* Extended bottom border */}
-                <div className="absolute left-0 right-0 bottom-0 h-px pointer-events-none -mx-6 md:-mx-8 lg:-mx-12"
-                  style={{
-                    background: 'linear-gradient(to right, transparent 0%, rgba(255,255,255,0.08) 15%, rgba(255,255,255,0.08) 85%, transparent 100%)'
-                  }}
-                />
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                viewport={{ once: true }}
+                className="border border-foreground/10 p-6 md:col-span-2 hover:border-foreground/20 hover:shadow-lg hover:shadow-[#ff5722]/5 transition-all duration-300"
+              >
                 <iframe
                   data-testid="embed-iframe"
                   style={{ borderRadius: '12px' }}
@@ -478,20 +471,14 @@ export default function App() {
                   loading="lazy"
                   title="Warm Intro Podcast - Spotify"
                 />
-              </div>
-              <div className="border border-foreground/10 p-6 md:col-span-3 relative overflow-visible">
-                {/* Extended top border */}
-                <div className="absolute left-0 right-0 top-0 h-px pointer-events-none -mx-6 md:-mx-8 lg:-mx-12"
-                  style={{
-                    background: 'linear-gradient(to right, transparent 0%, rgba(255,255,255,0.08) 15%, rgba(255,255,255,0.08) 85%, transparent 100%)'
-                  }}
-                />
-                {/* Extended bottom border */}
-                <div className="absolute left-0 right-0 bottom-0 h-px pointer-events-none -mx-6 md:-mx-8 lg:-mx-12"
-                  style={{
-                    background: 'linear-gradient(to right, transparent 0%, rgba(255,255,255,0.08) 15%, rgba(255,255,255,0.08) 85%, transparent 100%)'
-                  }}
-                />
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+                viewport={{ once: true }}
+                className="border border-foreground/10 p-6 md:col-span-3 hover:border-foreground/20 hover:shadow-lg hover:shadow-[#ff5722]/5 transition-all duration-300"
+              >
                 <iframe
                   width="100%"
                   height="352"
@@ -502,7 +489,7 @@ export default function App() {
                   referrerPolicy="strict-origin-when-cross-origin"
                   allowFullScreen
                 />
-              </div>
+              </motion.div>
             </div>
           </motion.div>
 
@@ -521,18 +508,24 @@ export default function App() {
             className="col-span-10 bg-background py-24 px-12"
           >
             {/* Section label */}
-            <div className="flex items-center gap-8 mb-12 relative">
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+              className="flex items-center gap-8 mb-12"
+            >
               <div className="text-[0.65rem] tracking-[0.3em] uppercase text-foreground/40">
                 Contact
               </div>
-              <div className="h-px flex-1 bg-foreground/10" />
-              {/* Extended line with fade */}
-              <div className="absolute left-0 right-0 top-1/2 -translate-y-1/2 h-px pointer-events-none -mx-12 md:-mx-24 lg:-mx-32"
-                style={{
-                  background: 'linear-gradient(to right, transparent 0%, rgba(255,255,255,0.1) 20%, rgba(255,255,255,0.1) 80%, transparent 100%)'
-                }}
+              <motion.div
+                initial={{ scaleX: 0 }}
+                whileInView={{ scaleX: 1 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                viewport={{ once: true }}
+                className="h-px flex-1 bg-foreground/10 origin-left"
               />
-            </div>
+            </motion.div>
 
             {/* Contact info */}
             <div className="flex gap-8 flex-wrap">
