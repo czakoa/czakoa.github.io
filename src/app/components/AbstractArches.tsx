@@ -2,13 +2,17 @@ import { motion, useScroll, useTransform } from "motion/react";
 
 export function AbstractArches() {
   const { scrollYProgress } = useScroll();
-  
+
   // Light angle changes as you scroll - simulates sun moving across the piece
-  const lightAngle = useTransform(scrollYProgress, [0, 1], [135, 225]);
-  const shadowIntensity = useTransform(scrollYProgress, [0, 0.5, 1], [0.3, 0.5, 0.3]);
+  const lightAngle = useTransform(scrollYProgress, [0, 1], [120, 240]);
+  const shadowIntensity = useTransform(scrollYProgress, [0, 0.5, 1], [0.25, 0.6, 0.25]);
+  const archOpacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0.5, 0.7, 0.7, 0.5]);
 
   return (
-    <div className="fixed inset-0 overflow-hidden pointer-events-none opacity-50">
+    <motion.div
+      className="fixed inset-0 overflow-hidden pointer-events-none"
+      style={{ opacity: archOpacity }}
+    >
       {/* Large arch - bottom left */}
       <motion.div
         className="absolute -bottom-[30%] -left-[15%] w-[55vw] h-[55vw]"
@@ -201,6 +205,6 @@ export function AbstractArches() {
           }}
         />
       </motion.div>
-    </div>
+    </motion.div>
   );
 }
