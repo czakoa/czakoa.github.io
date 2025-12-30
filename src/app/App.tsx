@@ -23,9 +23,9 @@ export default function App() {
         style={{ opacity: headerOpacity }}
         className="fixed top-0 left-0 right-0 z-50 px-8 py-6 flex justify-between items-start"
       >
-        <div className="flex items-baseline gap-3">
+        <div className="flex items-baseline gap-2">
           <div className="text-[0.65rem] tracking-[0.3em] uppercase text-foreground/40">Alex Czako</div>
-          <div className="w-px h-4 bg-foreground/20" />
+          <div className="w-px h-3 bg-foreground/20" />
           <div className="text-[0.65rem] tracking-[0.2em] uppercase text-foreground/30">Builder & Operator</div>
         </div>
       </motion.header>
@@ -190,8 +190,8 @@ export default function App() {
             {/* Experience items */}
             <Accordion type="multiple" className="space-y-6">
               {/* Wefunder - with nested accordion for multiple positions */}
-              <AccordionItem value="wefunder" className="border border-foreground/10">
-                <AccordionTrigger className="px-6 hover:no-underline">
+              <AccordionItem value="wefunder" className="border border-foreground/10 hover:border-foreground/20 transition-colors">
+                <AccordionTrigger className="px-6 hover:no-underline hover:bg-foreground/5 transition-colors">
                   <div className="flex items-center gap-4 w-full">
                     <span className="px-3 py-1 text-[0.7rem] tracking-wide border border-foreground/20 text-foreground/60">Wefunder (YC13)</span>
                     <span className="text-[0.75rem] text-foreground/40">Aug. 2023 - Present</span>
@@ -253,8 +253,8 @@ export default function App() {
               </AccordionItem>
 
               {/* Credit Suisse */}
-              <AccordionItem value="credit-suisse" className="border border-foreground/10">
-                <AccordionTrigger className="px-6 hover:no-underline">
+              <AccordionItem value="credit-suisse" className="border border-foreground/10 hover:border-foreground/20 transition-colors">
+                <AccordionTrigger className="px-6 hover:no-underline hover:bg-foreground/5 transition-colors">
                   <div className="flex items-center gap-4">
                     <span className="px-3 py-1 text-[0.7rem] tracking-wide border border-foreground/20 text-foreground/60">Credit Suisse</span>
                     <span className="text-[0.75rem] text-foreground/40">Jul. 2022 - Jul. 2023</span>
@@ -270,8 +270,8 @@ export default function App() {
               </AccordionItem>
 
               {/* UBS */}
-              <AccordionItem value="ubs" className="border border-foreground/10">
-                <AccordionTrigger className="px-6 hover:no-underline">
+              <AccordionItem value="ubs" className="border border-foreground/10 hover:border-foreground/20 transition-colors">
+                <AccordionTrigger className="px-6 hover:no-underline hover:bg-foreground/5 transition-colors">
                   <div className="flex items-center gap-4">
                     <span className="px-3 py-1 text-[0.7rem] tracking-wide border border-foreground/20 text-foreground/60">UBS</span>
                     <span className="text-[0.75rem] text-foreground/40">Jun. 2021 - Jan. 2022</span>
@@ -287,8 +287,8 @@ export default function App() {
               </AccordionItem>
 
               {/* Scotiabank */}
-              <AccordionItem value="scotiabank" className="border border-foreground/10">
-                <AccordionTrigger className="px-6 hover:no-underline">
+              <AccordionItem value="scotiabank" className="border border-foreground/10 hover:border-foreground/20 transition-colors">
+                <AccordionTrigger className="px-6 hover:no-underline hover:bg-foreground/5 transition-colors">
                   <div className="flex items-center gap-4">
                     <span className="px-3 py-1 text-[0.7rem] tracking-wide border border-foreground/20 text-foreground/60">Scotiabank</span>
                     <span className="text-[0.75rem] text-foreground/40">Mar. 2021 - Jun. 2021</span>
@@ -303,8 +303,8 @@ export default function App() {
               </AccordionItem>
 
               {/* GRI / MIT Lincoln Labs */}
-              <AccordionItem value="gri" className="border border-foreground/10">
-                <AccordionTrigger className="px-6 hover:no-underline">
+              <AccordionItem value="gri" className="border border-foreground/10 hover:border-foreground/20 transition-colors">
+                <AccordionTrigger className="px-6 hover:no-underline hover:bg-foreground/5 transition-colors">
                   <div className="flex items-center gap-4">
                     <span className="px-3 py-1 text-[0.7rem] tracking-wide border border-foreground/20 text-foreground/60">GRI / MIT Lincoln Labs</span>
                     <span className="text-[0.75rem] text-foreground/40">May 2020 - Sep. 2020</span>
@@ -318,19 +318,16 @@ export default function App() {
                 </AccordionContent>
               </AccordionItem>
 
-              {/* Education */}
-              <AccordionItem value="education" className="border border-foreground/10">
-                <AccordionTrigger className="px-6 hover:no-underline">
-                  <div className="flex items-center gap-4">
-                    <span className="px-3 py-1 text-[0.7rem] tracking-wide border border-foreground/20 text-foreground/60">Education</span>
-                    <span className="text-[0.75rem] text-foreground/40">Sep. 2018 - Apr. 2022</span>
-                  </div>
-                </AccordionTrigger>
-                <AccordionContent className="px-6">
-                  <h3 className="text-[1.1rem] font-medium text-foreground mb-4">Northeastern University - D'Amore-McKim School of Business</h3>
-                </AccordionContent>
-              </AccordionItem>
             </Accordion>
+
+            {/* Education - Non-collapsible */}
+            <div className="border border-foreground/10 p-6 mt-6">
+              <div className="flex items-center gap-4 mb-3">
+                <span className="px-3 py-1 text-[0.7rem] tracking-wide border border-foreground/20 text-foreground/60">Education</span>
+                <span className="text-[0.75rem] text-foreground/40">Sep. 2018 - Apr. 2022</span>
+              </div>
+              <h3 className="text-[1.1rem] font-medium text-foreground">Northeastern University</h3>
+            </div>
           </motion.div>
 
           <div className="col-span-1 bg-background" />
@@ -357,12 +354,12 @@ export default function App() {
 
             <h2 className="text-[1.8rem] font-medium text-foreground mb-8">Warm Intro</h2>
             <p className="text-[1.1rem] leading-relaxed text-foreground/70 mb-12 max-w-3xl">
-              A podcast I produce exploring meaningful conversations and connections.
+              A podcast I produce.
             </p>
 
             {/* Embedded podcast episodes */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="border border-foreground/10 p-6">
+            <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
+              <div className="border border-foreground/10 p-6 md:col-span-2">
                 <iframe
                   data-testid="embed-iframe"
                   style={{ borderRadius: '12px' }}
@@ -375,7 +372,7 @@ export default function App() {
                   title="Warm Intro Podcast - Spotify"
                 />
               </div>
-              <div className="border border-foreground/10 p-6">
+              <div className="border border-foreground/10 p-6 md:col-span-3">
                 <iframe
                   width="100%"
                   height="352"
@@ -462,24 +459,6 @@ export default function App() {
               </a>
             </div>
           </motion.div>
-
-          <div className="col-span-1 bg-background" />
-        </div>
-
-        {/* Footer */}
-        <div className="grid grid-cols-12 gap-px bg-border">
-          <div className="col-span-1 bg-background" />
-
-          <div className="col-span-10 bg-background px-12 py-16">
-            <div className="border-t border-foreground/10 pt-8 flex justify-between items-center">
-              <div className="text-[0.65rem] tracking-[0.3em] uppercase text-foreground/30">
-                © 2025 Alex Czako
-              </div>
-              <div className="text-[0.65rem] tracking-[0.2em] uppercase text-foreground/30">
-                Built on GitHub Pages
-              </div>
-            </div>
-          </div>
 
           <div className="col-span-1 bg-background" />
         </div>
