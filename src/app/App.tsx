@@ -322,11 +322,10 @@ export default function App() {
 
             {/* Education - Non-collapsible */}
             <div className="border border-foreground/10 p-6 mt-6">
-              <div className="flex items-center gap-4 mb-3">
-                <span className="px-3 py-1 text-[0.7rem] tracking-wide border border-foreground/20 text-foreground/60">Education</span>
+              <div className="flex items-center gap-4">
+                <span className="px-3 py-1 text-[0.7rem] tracking-wide border border-foreground/20 text-foreground/60">Northeastern University</span>
                 <span className="text-[0.75rem] text-foreground/40">Sep. 2018 - Apr. 2022</span>
               </div>
-              <h3 className="text-[1.1rem] font-medium text-foreground">Northeastern University</h3>
             </div>
           </motion.div>
 
