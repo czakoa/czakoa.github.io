@@ -50,13 +50,25 @@ export default function App() {
                 transition={{ duration: 0.8, delay: 0.2 }}
                 className="mb-12"
               >
-                <div className="border-t border-b border-foreground/10 py-8">
+                <div className="border-t border-b border-foreground/10 py-8 relative">
                   <h1
                     className="tracking-tight leading-[0.9]"
                     style={{ fontSize: 'clamp(2rem, 6vw, 4rem)' }}
                   >
                     Alex Czako
                   </h1>
+                  {/* Extended top border */}
+                  <div className="absolute left-0 right-0 top-0 h-px pointer-events-none -mx-12 md:-mx-24 lg:-mx-40"
+                    style={{
+                      background: 'linear-gradient(to right, transparent 0%, rgba(255,255,255,0.1) 15%, rgba(255,255,255,0.1) 85%, transparent 100%)'
+                    }}
+                  />
+                  {/* Extended bottom border */}
+                  <div className="absolute left-0 right-0 bottom-0 h-px pointer-events-none -mx-12 md:-mx-24 lg:-mx-40"
+                    style={{
+                      background: 'linear-gradient(to right, transparent 0%, rgba(255,255,255,0.1) 15%, rgba(255,255,255,0.1) 85%, transparent 100%)'
+                    }}
+                  />
                 </div>
               </motion.div>
 
@@ -180,17 +192,35 @@ export default function App() {
             className="col-span-10 bg-background py-24 px-12"
           >
             {/* Section label */}
-            <div className="flex items-center gap-8 mb-12">
+            <div className="flex items-center gap-8 mb-12 relative">
               <div className="text-[0.65rem] tracking-[0.3em] uppercase text-foreground/40">
                 Experience
               </div>
               <div className="h-px flex-1 bg-foreground/10" />
+              {/* Extended line with fade */}
+              <div className="absolute left-0 right-0 top-1/2 -translate-y-1/2 h-px pointer-events-none -mx-12 md:-mx-24 lg:-mx-32"
+                style={{
+                  background: 'linear-gradient(to right, transparent 0%, rgba(255,255,255,0.1) 20%, rgba(255,255,255,0.1) 80%, transparent 100%)'
+                }}
+              />
             </div>
 
             {/* Experience items */}
             <Accordion type="multiple" className="space-y-6">
               {/* Wefunder - with nested accordion for multiple positions */}
-              <AccordionItem value="wefunder" className="border border-foreground/10 hover:border-foreground/20 transition-colors">
+              <AccordionItem value="wefunder" className="border border-foreground/10 hover:border-foreground/20 transition-colors relative overflow-visible">
+                {/* Extended top border */}
+                <div className="absolute left-0 right-0 top-0 h-px pointer-events-none -mx-6 md:-mx-12 lg:-mx-16"
+                  style={{
+                    background: 'linear-gradient(to right, transparent 0%, rgba(255,255,255,0.08) 15%, rgba(255,255,255,0.08) 85%, transparent 100%)'
+                  }}
+                />
+                {/* Extended bottom border */}
+                <div className="absolute left-0 right-0 bottom-0 h-px pointer-events-none -mx-6 md:-mx-12 lg:-mx-16"
+                  style={{
+                    background: 'linear-gradient(to right, transparent 0%, rgba(255,255,255,0.08) 15%, rgba(255,255,255,0.08) 85%, transparent 100%)'
+                  }}
+                />
                 <AccordionTrigger className="px-6 hover:no-underline hover:bg-foreground/5 transition-colors">
                   <div className="flex items-center gap-4 w-full">
                     <span className="px-3 py-1 text-[0.7rem] tracking-wide border border-foreground/20 text-foreground/60">Wefunder (YC13)</span>
@@ -253,7 +283,19 @@ export default function App() {
               </AccordionItem>
 
               {/* Credit Suisse */}
-              <AccordionItem value="credit-suisse" className="border border-foreground/10 hover:border-foreground/20 transition-colors">
+              <AccordionItem value="credit-suisse" className="border border-foreground/10 hover:border-foreground/20 transition-colors relative overflow-visible">
+                {/* Extended top border */}
+                <div className="absolute left-0 right-0 top-0 h-px pointer-events-none -mx-6 md:-mx-12 lg:-mx-16"
+                  style={{
+                    background: 'linear-gradient(to right, transparent 0%, rgba(255,255,255,0.08) 15%, rgba(255,255,255,0.08) 85%, transparent 100%)'
+                  }}
+                />
+                {/* Extended bottom border */}
+                <div className="absolute left-0 right-0 bottom-0 h-px pointer-events-none -mx-6 md:-mx-12 lg:-mx-16"
+                  style={{
+                    background: 'linear-gradient(to right, transparent 0%, rgba(255,255,255,0.08) 15%, rgba(255,255,255,0.08) 85%, transparent 100%)'
+                  }}
+                />
                 <AccordionTrigger className="px-6 hover:no-underline hover:bg-foreground/5 transition-colors">
                   <div className="flex items-center gap-4">
                     <span className="px-3 py-1 text-[0.7rem] tracking-wide border border-foreground/20 text-foreground/60">Credit Suisse</span>
@@ -270,7 +312,19 @@ export default function App() {
               </AccordionItem>
 
               {/* UBS */}
-              <AccordionItem value="ubs" className="border border-foreground/10 hover:border-foreground/20 transition-colors">
+              <AccordionItem value="ubs" className="border border-foreground/10 hover:border-foreground/20 transition-colors relative overflow-visible">
+                {/* Extended top border */}
+                <div className="absolute left-0 right-0 top-0 h-px pointer-events-none -mx-6 md:-mx-12 lg:-mx-16"
+                  style={{
+                    background: 'linear-gradient(to right, transparent 0%, rgba(255,255,255,0.08) 15%, rgba(255,255,255,0.08) 85%, transparent 100%)'
+                  }}
+                />
+                {/* Extended bottom border */}
+                <div className="absolute left-0 right-0 bottom-0 h-px pointer-events-none -mx-6 md:-mx-12 lg:-mx-16"
+                  style={{
+                    background: 'linear-gradient(to right, transparent 0%, rgba(255,255,255,0.08) 15%, rgba(255,255,255,0.08) 85%, transparent 100%)'
+                  }}
+                />
                 <AccordionTrigger className="px-6 hover:no-underline hover:bg-foreground/5 transition-colors">
                   <div className="flex items-center gap-4">
                     <span className="px-3 py-1 text-[0.7rem] tracking-wide border border-foreground/20 text-foreground/60">UBS</span>
@@ -287,7 +341,19 @@ export default function App() {
               </AccordionItem>
 
               {/* Scotiabank */}
-              <AccordionItem value="scotiabank" className="border border-foreground/10 hover:border-foreground/20 transition-colors">
+              <AccordionItem value="scotiabank" className="border border-foreground/10 hover:border-foreground/20 transition-colors relative overflow-visible">
+                {/* Extended top border */}
+                <div className="absolute left-0 right-0 top-0 h-px pointer-events-none -mx-6 md:-mx-12 lg:-mx-16"
+                  style={{
+                    background: 'linear-gradient(to right, transparent 0%, rgba(255,255,255,0.08) 15%, rgba(255,255,255,0.08) 85%, transparent 100%)'
+                  }}
+                />
+                {/* Extended bottom border */}
+                <div className="absolute left-0 right-0 bottom-0 h-px pointer-events-none -mx-6 md:-mx-12 lg:-mx-16"
+                  style={{
+                    background: 'linear-gradient(to right, transparent 0%, rgba(255,255,255,0.08) 15%, rgba(255,255,255,0.08) 85%, transparent 100%)'
+                  }}
+                />
                 <AccordionTrigger className="px-6 hover:no-underline hover:bg-foreground/5 transition-colors">
                   <div className="flex items-center gap-4">
                     <span className="px-3 py-1 text-[0.7rem] tracking-wide border border-foreground/20 text-foreground/60">Scotiabank</span>
@@ -303,7 +369,19 @@ export default function App() {
               </AccordionItem>
 
               {/* GRI / MIT Lincoln Labs */}
-              <AccordionItem value="gri" className="border border-foreground/10 hover:border-foreground/20 transition-colors">
+              <AccordionItem value="gri" className="border border-foreground/10 hover:border-foreground/20 transition-colors relative overflow-visible">
+                {/* Extended top border */}
+                <div className="absolute left-0 right-0 top-0 h-px pointer-events-none -mx-6 md:-mx-12 lg:-mx-16"
+                  style={{
+                    background: 'linear-gradient(to right, transparent 0%, rgba(255,255,255,0.08) 15%, rgba(255,255,255,0.08) 85%, transparent 100%)'
+                  }}
+                />
+                {/* Extended bottom border */}
+                <div className="absolute left-0 right-0 bottom-0 h-px pointer-events-none -mx-6 md:-mx-12 lg:-mx-16"
+                  style={{
+                    background: 'linear-gradient(to right, transparent 0%, rgba(255,255,255,0.08) 15%, rgba(255,255,255,0.08) 85%, transparent 100%)'
+                  }}
+                />
                 <AccordionTrigger className="px-6 hover:no-underline hover:bg-foreground/5 transition-colors">
                   <div className="flex items-center gap-4">
                     <span className="px-3 py-1 text-[0.7rem] tracking-wide border border-foreground/20 text-foreground/60">GRI / MIT Lincoln Labs</span>
@@ -321,7 +399,19 @@ export default function App() {
             </Accordion>
 
             {/* Education - Non-collapsible */}
-            <div className="border border-foreground/10 p-6 mt-6">
+            <div className="border border-foreground/10 p-6 mt-6 relative overflow-visible">
+              {/* Extended top border */}
+              <div className="absolute left-0 right-0 top-0 h-px pointer-events-none -mx-6 md:-mx-12 lg:-mx-16"
+                style={{
+                  background: 'linear-gradient(to right, transparent 0%, rgba(255,255,255,0.08) 15%, rgba(255,255,255,0.08) 85%, transparent 100%)'
+                }}
+              />
+              {/* Extended bottom border */}
+              <div className="absolute left-0 right-0 bottom-0 h-px pointer-events-none -mx-6 md:-mx-12 lg:-mx-16"
+                style={{
+                  background: 'linear-gradient(to right, transparent 0%, rgba(255,255,255,0.08) 15%, rgba(255,255,255,0.08) 85%, transparent 100%)'
+                }}
+              />
               <div className="flex items-center gap-4">
                 <span className="px-3 py-1 text-[0.7rem] tracking-wide border border-foreground/20 text-foreground/60">Northeastern University</span>
                 <span className="text-[0.75rem] text-foreground/40">Sep. 2018 - Apr. 2022</span>
@@ -344,11 +434,17 @@ export default function App() {
             className="col-span-10 bg-background py-24 px-12"
           >
             {/* Section label */}
-            <div className="flex items-center gap-8 mb-12">
+            <div className="flex items-center gap-8 mb-12 relative">
               <div className="text-[0.65rem] tracking-[0.3em] uppercase text-foreground/40">
                 Podcast
               </div>
               <div className="h-px flex-1 bg-foreground/10" />
+              {/* Extended line with fade */}
+              <div className="absolute left-0 right-0 top-1/2 -translate-y-1/2 h-px pointer-events-none -mx-12 md:-mx-24 lg:-mx-32"
+                style={{
+                  background: 'linear-gradient(to right, transparent 0%, rgba(255,255,255,0.1) 20%, rgba(255,255,255,0.1) 80%, transparent 100%)'
+                }}
+              />
             </div>
 
             <h2 className="text-[1.8rem] font-medium text-foreground mb-8">Warm Intro</h2>
@@ -358,7 +454,19 @@ export default function App() {
 
             {/* Embedded podcast episodes */}
             <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
-              <div className="border border-foreground/10 p-6 md:col-span-2">
+              <div className="border border-foreground/10 p-6 md:col-span-2 relative overflow-visible">
+                {/* Extended top border */}
+                <div className="absolute left-0 right-0 top-0 h-px pointer-events-none -mx-6 md:-mx-8 lg:-mx-12"
+                  style={{
+                    background: 'linear-gradient(to right, transparent 0%, rgba(255,255,255,0.08) 15%, rgba(255,255,255,0.08) 85%, transparent 100%)'
+                  }}
+                />
+                {/* Extended bottom border */}
+                <div className="absolute left-0 right-0 bottom-0 h-px pointer-events-none -mx-6 md:-mx-8 lg:-mx-12"
+                  style={{
+                    background: 'linear-gradient(to right, transparent 0%, rgba(255,255,255,0.08) 15%, rgba(255,255,255,0.08) 85%, transparent 100%)'
+                  }}
+                />
                 <iframe
                   data-testid="embed-iframe"
                   style={{ borderRadius: '12px' }}
@@ -371,7 +479,19 @@ export default function App() {
                   title="Warm Intro Podcast - Spotify"
                 />
               </div>
-              <div className="border border-foreground/10 p-6 md:col-span-3">
+              <div className="border border-foreground/10 p-6 md:col-span-3 relative overflow-visible">
+                {/* Extended top border */}
+                <div className="absolute left-0 right-0 top-0 h-px pointer-events-none -mx-6 md:-mx-8 lg:-mx-12"
+                  style={{
+                    background: 'linear-gradient(to right, transparent 0%, rgba(255,255,255,0.08) 15%, rgba(255,255,255,0.08) 85%, transparent 100%)'
+                  }}
+                />
+                {/* Extended bottom border */}
+                <div className="absolute left-0 right-0 bottom-0 h-px pointer-events-none -mx-6 md:-mx-8 lg:-mx-12"
+                  style={{
+                    background: 'linear-gradient(to right, transparent 0%, rgba(255,255,255,0.08) 15%, rgba(255,255,255,0.08) 85%, transparent 100%)'
+                  }}
+                />
                 <iframe
                   width="100%"
                   height="352"
@@ -401,11 +521,17 @@ export default function App() {
             className="col-span-10 bg-background py-24 px-12"
           >
             {/* Section label */}
-            <div className="flex items-center gap-8 mb-12">
+            <div className="flex items-center gap-8 mb-12 relative">
               <div className="text-[0.65rem] tracking-[0.3em] uppercase text-foreground/40">
                 Contact
               </div>
               <div className="h-px flex-1 bg-foreground/10" />
+              {/* Extended line with fade */}
+              <div className="absolute left-0 right-0 top-1/2 -translate-y-1/2 h-px pointer-events-none -mx-12 md:-mx-24 lg:-mx-32"
+                style={{
+                  background: 'linear-gradient(to right, transparent 0%, rgba(255,255,255,0.1) 20%, rgba(255,255,255,0.1) 80%, transparent 100%)'
+                }}
+              />
             </div>
 
             {/* Contact info */}
